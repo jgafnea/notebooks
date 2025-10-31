@@ -4,8 +4,32 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "jupyterlab>=4.4.10",
-    "pandas>=2.3.3",
-    "seaborn>=0.13.2",
+dependencies = ["jupyterlab>=4.4.10", "pandas>=2.3.3", "seaborn>=0.13.2"]
+
+[dependency-groups]
+dev = ["ruff>=0.14.3"]
+
+[tool.ruff]
+# line-length = 88
+# target-version = "py311"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+# exclude = ["*.ipynb"]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "B",  # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "UP",  # pyupgrade
+]
+ignore = []
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = [
+  "E402",  # Module level import not at top of file
+  "F401",  # Imported but unused (common in notebooks for exploration)
+  "F403",  # Star imports
 ]
